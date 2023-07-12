@@ -5,6 +5,7 @@ import fitz
 import cv2
 import zipfile
 
+
 st.title("PDF to PNG")
 
 file = st.file_uploader("请上传PDF")
@@ -20,12 +21,6 @@ if file is not None:
             os.chdir(work_path)
             pix = page.get_pixmap(matrix=fitz.Matrix(300/72, 300/72), dpi=300)
             img_array = np.frombuffer(pix.samples, dtype=np.uint8).reshape((pix.height, pix.width, pix.n))
-            cv2.imwrite(f'{folder_name}/{i+1}.png', img_array)
             st.image(img_array, caption=f"Page {i+1}", use_column_width=True)
+            st.download_button(label='Download image',data=img_array, file_name=f"{i+1}.png",mime="image/jpeg")
 
-btn = st.download_button(
-            label="Download image",
-            data=file,
-            file_name="flower.png",
-            mime="image/png"
-          )
