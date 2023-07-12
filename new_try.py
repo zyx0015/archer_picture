@@ -82,10 +82,9 @@ st.title("PDF to PNG")
 file_name = st.file_uploader("import your pdf file")
 book_title = st.text_input("pdf label")
 
-min_size = st.slider("accepted minimum countour size:",1,10000,100,5)
-min_size = min_size*100
 if file_name is not None:
-    img_dict=extract_report(file_name,book_title,contour_area_val=min_size)
+    min_size = st.slider("accepted minimum countour size:",1,1000,100,5)
+    img_dict=extract_report(file_name,book_title,contour_area_val=min_size*100)
     img_key=list(img_dict.keys())
     img_list=list(img_dict.values())
     for i in range(len(img_list)):
