@@ -11,6 +11,7 @@ if file is not None:
     doc = fitz.open(stream=file.read(), filetype="pdf")
     work_path = st.text_input("Enter work path")
     folder_name = st.text_input("Enter folder name")
+    os.chdir(work_path)
     if folder_name:
         os.makedirs(folder_name, exist_ok=True)
         for i in range(len(doc)):
