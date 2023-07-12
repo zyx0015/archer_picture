@@ -77,7 +77,7 @@ def save_arrays_to_zip(names, arrays, zip_file_path):
 
 
 ############start##################
-st.title("PDF to PNG")
+st.title("Extract information from your archaeological reports")
 
 file_name = st.file_uploader("import your pdf file")
 book_title = st.text_input("pdf label")
