@@ -78,13 +78,11 @@ def save_arrays_to_zip(arrays, zip_file_path):
 ############start##################
 st.title("PDF to PNG")
 
-
 file_name = st.file_uploader("请上传PDF")
 book_title = st.text_input("输入pdf编号")
 
 if file_name is not None:
     img_list=extract_report(pdf_path,file_name,book_title)
-    img_list=[]
     for i in range(len(img_list)):
         st.image(img_list[i], caption=f"Page {i+1}", use_column_width=False)
 
