@@ -71,7 +71,7 @@ def extract_report(file_name,book_title,dpi=300,contour_area_val=100000,size_val
 def save_arrays_to_zip(names, arrays, zip_file_path):
     with zipfile.ZipFile(zip_file_path, mode='w') as zip_file:
         for i in range(len(names)):
-            cv2.imwrite(f'{names[i]}.png',image[i])
+            cv2.imwrite(f'{names[i]}.png',arrays[i])
             zip_file.write(f'{names[i]}.png')
             os.remove(f'{names[i]}.png')
 
