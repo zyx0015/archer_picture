@@ -79,11 +79,12 @@ def save_arrays_to_zip(names, arrays, zip_file_path):
 ############start##################
 st.title("PDF to PNG")
 
-file_name = st.file_uploader("请上传PDF")
-book_title = st.text_input("输入pdf编号")
+file_name = st.file_uploader("import your pdf file")
+book_title = st.text_input("pdf label")
+min_size = st.text_input("accepted minimum countour size：(default=100000)")
 
 if file_name is not None:
-    img_dict=extract_report(file_name,book_title)
+    img_dict=extract_report(file_name,book_title,contour_area_val=min_size)
     img_key=list(img_dict.keys())
     img_list=list(img_dict.values())
     for i in range(len(img_list)):
