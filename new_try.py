@@ -2,6 +2,7 @@ import os
 import numpy as np
 import streamlit as st
 import cv2
+import fitz
 
 def read_images_from_folder(folder_path):
     images = []
