@@ -5,7 +5,7 @@ import fitz
 import cv2
 import zipfile
 
-def extract_report(pdf_path,file_name,book_title,dpi=300,contour_area_val=100000,size_val=10000):
+def extract_report(file_name,book_title,dpi=300,contour_area_val=100000,size_val=10000):
     final_pictures=[]
     final_names=[]
     doc = fitz.open(stream=file_name.read(), filetype="pdf")
@@ -82,7 +82,7 @@ file_name = st.file_uploader("请上传PDF")
 book_title = st.text_input("输入pdf编号")
 
 if file_name is not None:
-    img_dict=extract_report(pdf_path,file_name,book_title)
+    img_dict=extract_report(file_name,book_title)
     img_list=list(img_dict.values())
     for i in range(len(img_list)):
         st.image(img_list[i], caption=f"Page {i+1}", use_column_width=False)
