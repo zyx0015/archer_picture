@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import streamlit as st
+from skimage import morphology
 import fitz
 import cv2
 import zipfile
