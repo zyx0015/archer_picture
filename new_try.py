@@ -85,8 +85,7 @@ if file_name is not None:
     img_list=extract_report(pdf_path,file_name,book_title)
     for i in range(len(img_list)):
         st.image(img_list[i], caption=f"Page {i+1}", use_column_width=False)
-
-save_arrays_to_zip(img_list, 'output.zip')
+    save_arrays_to_zip(img_list, 'output.zip')
 
 
 with open('output.zip', 'rb') as f:
