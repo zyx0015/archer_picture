@@ -81,8 +81,8 @@ st.title("PDF to PNG")
 
 file_name = st.file_uploader("import your pdf file")
 book_title = st.text_input("pdf label")
-min_size = int(st.text_input("accepted minimum countour size：(default=100000)"))
-
+min_size = st.text_input("accepted minimum countour size：(default=100000)")
+min_size = float(min_size)
 if file_name is not None:
     img_dict=extract_report(file_name,book_title,contour_area_val=min_size)
     img_key=list(img_dict.keys())
