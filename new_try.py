@@ -1,16 +1,8 @@
 import os
 import numpy as np
 import streamlit as st
-import cv2
 import fitz
-
-def read_images_from_folder(folder_path):
-    images = []
-    for filename in os.listdir(folder_path):
-        img = cv2.imread(os.path.join(folder_path,filename))
-        if img is not None:
-            images.append(img)
-    return images
+import cv2
 
 st.title("PDF to PNG")
 
@@ -21,8 +13,10 @@ if file is not None:
     folder_name = st.text_input("Enter folder name")
     if folder_name:
         os.makedirs(folder_name, exist_ok=True)
-        img_list=read_images_from_folder("test_png")
-        for img in range(len(img_list)):
+        for i in range(len(doc)):
             page = doc.load_page(i)
-            cv2.imwrite(f'{folder_name}/{i+1}.png', img)
+            os.chdir(work_path)
+            pix = page.get_pixmap(matrix=fitz.Matrix(300/72, 300/72), dpi=300)
+            img_array = np.frombuffer(pix.samples, dtype=np.uint8).reshape((pix.height, pix.width, pix.n))
+            cv2.imwrite(f'{folder_name}/{i+1}.png', img_array)
             st.image(img_array, caption=f"Page {i+1}", use_column_width=True)
