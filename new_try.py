@@ -72,7 +72,7 @@ def save_arrays_to_zip(arrays, zip_file_path):
         for key, image in arrays:
             cv2.imwrite(f'{key}.png',image)
             zip_file.write(f'{key}.png')
-            os.remove(f'{i}.png')
+            os.remove(f'{key}.png')
 
 
 ############start##################
@@ -82,10 +82,11 @@ file_name = st.file_uploader("请上传PDF")
 book_title = st.text_input("输入pdf编号")
 
 if file_name is not None:
-    img_list=extract_report(pdf_path,file_name,book_title)
+    img_dict=extract_report(pdf_path,file_name,book_title)
+    img_list=list(img_dict.values())
     for i in range(len(img_list)):
         st.image(img_list[i], caption=f"Page {i+1}", use_column_width=False)
-    save_arrays_to_zip(img_list, 'output.zip')
+    save_arrays_to_zip(img_dict, 'output.zip')
 
 
 with open('output.zip', 'rb') as f:
