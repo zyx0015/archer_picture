@@ -86,10 +86,9 @@ if file_name is not None:
     img_list=list(img_dict.values())
     for i in range(len(img_list)):
         st.image(img_list[i], caption=f"Page {i+1}", use_column_width=False)
-    save_arrays_to_zip(img_dict, 'output.zip')
+    save_arrays_to_zip(img_dict, '/home/output.zip')
 
-
-with open('output.zip', 'rb') as f:
+with open('/home/output.zip', 'rb') as f:
     result = f.read()
     st.download_button(
         label='Download output.zip',
