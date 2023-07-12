@@ -3,6 +3,7 @@ import numpy as np
 import streamlit as st
 import fitz
 import cv2
+import zipfile
 
 st.title("PDF to PNG")
 
@@ -21,3 +22,10 @@ if file is not None:
             img_array = np.frombuffer(pix.samples, dtype=np.uint8).reshape((pix.height, pix.width, pix.n))
             cv2.imwrite(f'{folder_name}/{i+1}.png', img_array)
             st.image(img_array, caption=f"Page {i+1}", use_column_width=True)
+
+btn = st.download_button(
+            label="Download image",
+            data=file,
+            file_name="flower.png",
+            mime="image/png"
+          )
